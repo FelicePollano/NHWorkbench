@@ -1,0 +1,142 @@
+﻿<?xml version="1.0"?>
+<!-- syntaxdefinition for HQL 2010 by Felice Pollano -->
+
+<SyntaxDefinition name = "HQL" extensions = ".hql">
+	
+	<Properties>
+    <Property name="LineComment" value="//"/>
+	</Properties>
+	
+	<Digits name = "Digits" bold = "true" italic = "false" color = "Blue"/>
+	
+	<RuleSets>
+		<RuleSet ignorecase = "false">
+			<Delimiters>~!%^*()-+=|\#/{}[];"'&lt;&gt; , ?</Delimiters>
+		
+      <!--
+			<Span name = "PreprocessorDirectives" bold="false" italic="false" color="Green" stopateol = "true">
+				<Begin>#</Begin>
+			</Span>
+			
+			<Span name = "LineComment" bold = "false" italic = "false" color = "Green" stopateol = "true">
+				<Begin>//</Begin>
+			</Span>
+			
+			<Span name = "BlockComment" bold = "false" italic = "false" color = "Green" stopateol = "false">
+				<Begin>/*</Begin>
+				<End>*/</End>
+			</Span>
+			-->
+			<Span name = "String" bold = "false" italic = "false" color = "Magenta" stopateol = "true" escapecharacter="\">
+				<Begin>"</Begin>
+				<End>"</End>
+			</Span>
+			
+			<Span name = "Char" bold = "false" italic = "false" color = "Magenta" stopateol = "true" escapecharacter="\">
+				<Begin>&apos;</Begin>
+				<End>&apos;</End>
+			</Span>
+			
+			<MarkPrevious bold = "true" italic = "false" color = "MidnightBlue">(</MarkPrevious>
+			
+			<KeyWords name = "Punctuation" bold = "false" italic = "false" color = "DarkGreen">
+				<Key word = "?" />
+				<Key word = "," />
+				<Key word = "." />
+				<Key word = ";" />
+				<Key word = "(" />
+				<Key word = ")" />
+				<Key word = "[" />
+				<Key word = "]" />
+				<Key word = "{" />
+				<Key word = "}" />
+				<Key word = "+" />
+				<Key word = "-" />
+				<Key word = "/" />
+				<Key word = "%" />
+				<Key word = "*" />
+				<Key word = "&lt;" />
+				<Key word = "&gt;" />
+				<Key word = "^" />
+				<Key word = "=" />
+				<Key word = "~" />
+				<Key word = "!" />
+				<Key word = "|" />
+				<Key word = "&amp;" />
+			</KeyWords>
+      
+			<KeyWords name = "OperatorKeywords" bold="true" italic="false" color="DarkCyan">
+          <Key word="all"/>
+          <Key word="any" />
+          <Key word="and" />
+          <Key word="as" />
+          <Key word="asc" />
+          <Key word="avg" />
+          <Key word="between" />
+          <Key word="class" />
+          <Key word="count" />
+          <Key word="delete" />
+          <Key word="desc" />
+          <Key word="distinct" />
+          <Key word="elements" />
+          <Key word="escape" />
+          <Key word="exists" />
+          <Key word="false" />
+          <Key word="fetch" />
+          <Key word="from" />
+          <Key word="full" />
+          <Key word="group" />
+          <Key word="having" />
+          <Key word="in" />
+          <Key word="indices" />
+          <Key word="inner" />
+          <Key word="insert" />
+          <Key word="into" />
+          <Key word="is" />
+          <Key word="join" />
+          <Key word="left" />
+          <Key word="like" />
+          <Key word="max" />
+          <Key word="min" />
+          <Key word="new" />
+          <Key word="not" />
+          <Key word="null" />
+          <Key word="or" />
+          <Key word="order" />
+          <Key word="outer" />
+          <Key word="properties" />
+          <Key word="right" />
+          <Key word="select" />
+          <Key word="set" />
+          <Key word="some" />
+          <Key word="sum" />
+          <Key word="true" />
+          <Key word="union" />
+          <Key word="update" />
+          <Key word="versioned" />
+          <Key word="where" />
+          <Key word="by" />
+
+                  
+          <Key word="case" />
+          <Key word="end" />
+          <Key word="else" />
+          <Key word="then" />
+          <Key word="when" />
+          <Key word="on" />
+          <Key word="with" />
+
+                  
+          <Key word="both" />
+          <Key word="empty" />
+          <Key word="leading" />
+          <Key word="member" />
+          <Key word="object" />
+          <Key word="of" />
+          <Key word="trailing" />
+      </KeyWords>
+			
+     
+		</RuleSet>
+	</RuleSets>
+</SyntaxDefinition>

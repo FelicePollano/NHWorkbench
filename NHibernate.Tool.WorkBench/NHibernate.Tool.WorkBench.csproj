@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{58A00A56-ED8C-436D-8BD6-7AAB9ADFA0DA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHibernate.Tool.WorkBench</RootNamespace>
+    <AssemblyName>NHibernate.Tool.WorkBench</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fatica.Labs.XmlEditor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Fatica.Labs.XmlEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.TextEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=4d61825e8dd49f1a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\ICSharpCode.TextEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Build.Engine" />
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v3.5">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Tool.hbm2net, Version=1.0.2.1000, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NHibernate.Tool.hbm2net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=2.3.1.24483, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\NHibernate.Tool.WorkBench.Core\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
+    <Compile Include="AbstractDocumentPresenter.cs" />
+    <Compile Include="CommandDefs\DefinedCommands.cs" />
+    <Compile Include="Config\ConfigDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\ConfigDocument.Designer.cs">
+      <DependentUpon>ConfigDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ConfigPresenter.cs" />
+    <Compile Include="Events\FileNameChanged.cs" />
+    <Compile Include="Events\OpenFileRequest.cs" />
+    <Compile Include="Events\ProjectFileMoved.cs" />
+    <Compile Include="Helpers\ByExample.cs" />
+    <Compile Include="Helpers\MSBuildLoggerAdapter.cs" />
+    <Compile Include="Helpers\NHValueJSonHelper.cs" />
+    <Compile Include="Hql\HqlDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hql\HqlDocument.Designer.cs">
+      <DependentUpon>HqlDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hql\HqlPresenter.cs" />
+    <Compile Include="IHasEditorControl.cs" />
+    <Compile Include="IHasPath.cs" />
+    <Compile Include="IQueryTranslator.cs" />
+    <Compile Include="Log\ILogModel.cs" />
+    <Compile Include="Log\LogModel.cs" />
+    <Compile Include="Log\LogPresenter.cs" />
+    <Compile Include="Log\LogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\MainPresenter.cs" />
+    <Compile Include="Mapping\MappingDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mapping\MappingDocument.Designer.cs">
+      <DependentUpon>MappingDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Mapping\MappingPresenter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Project\Probe.cs" />
+    <Compile Include="Project\ProjectModel.cs" />
+    <Compile Include="Project\ProjectPresenter.cs" />
+    <Compile Include="Project\ProjectView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Project\ProjectView.Designer.cs">
+      <DependentUpon>ProjectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Config\ConfigDocument.resx">
+      <DependentUpon>ConfigDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Log\LogView.resx">
+      <DependentUpon>LogView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project\ProjectView.resx">
+      <DependentUpon>ProjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RawSQL\RawSQLModel.cs" />
+    <Compile Include="RawSQL\RawSQLPresenter.cs" />
+    <Compile Include="RawSQL\RawSQLView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RawSQL\RawSQLView.Designer.cs">
+      <DependentUpon>RawSQLView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ResultsModel.cs" />
+    <Compile Include="Results\ResultsPresenter.cs" />
+    <Compile Include="Results\ResultsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Results\ResultsView.Designer.cs">
+      <DependentUpon>ResultsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportEditorCommandContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tasks\Hbm2netTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fatica.Labs.HqlEditor\Fatica.Labs.HqlEditor.csproj">
+      <Project>{4FB53E3C-AF77-4E38-B3AA-1C3F12BEB44E}</Project>
+      <Name>Fatica.Labs.HqlEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HqlIntellisense\HqlIntellisense.csproj">
+      <Project>{FE5C7915-F90E-4977-B388-AFFB91A9353C}</Project>
+      <Name>HqlIntellisense</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NHibernate.Tool.WorkBench.Core\NHibernate.Tool.WorkBench.Core.csproj">
+      <Project>{494DA7BD-423B-495D-9A9C-EE4DAC891EF3}</Project>
+      <Name>NHibernate.Tool.WorkBench.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-new.png" />
+    <EmbeddedResource Include="Mapping\MappingDocument.resx">
+      <DependentUpon>MappingDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Schemas\nhibernate-configuration.xsd" />
+    <EmbeddedResource Include="Schemas\nhibernate-mapping.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DocTemplates\config.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DocTemplates\mapping.xml" />
+    <EmbeddedResource Include="Hql\HqlDocument.resx">
+      <DependentUpon>HqlDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RawSQL\RawSQLView.resx">
+      <DependentUpon>RawSQLView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Results\ResultsView.resx">
+      <DependentUpon>ResultsView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="TestHqlIntellisense" namespace="TestHqlIntellisense">
+  <class name="MyEntity" lazy="false">
+    <id type="Int32">
+      <generator class="native" />
+    </id>
+    <property name="P1" type="String"/>
+    <property name="P2" type="String"/>
+    <property name="P3" type="String"/>
+    <set name="Collection" >
+      <key column="kid"/>
+      <element column="x" type="String"/>
+    </set>
+    <many-to-one class="Referenced" name="Referenced"/>
+  </class>
+</hibernate-mapping>
