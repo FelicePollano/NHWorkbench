@@ -1,0 +1,93 @@
+Index: HqlIntellisense/NHConfigDataProvider.cs
+===================================================================
+--- HqlIntellisense/NHConfigDataProvider.cs	(revision 34)
++++ HqlIntellisense/NHConfigDataProvider.cs	(working copy)
+@@ -26,7 +26,7 @@
+         }
+         public NHibernate.Mapping.PersistentClass GetClassMapping(string path)
+         {
+-            return cfg.GetClassMapping(path);
++            return cfg.GetClassMapping(path) ?? cfg.ClassMappings.FirstOrDefault(cm => cm.ClassName == path);
+         }
+         public NHibernate.Mapping.PersistentClass GetClassMapping(Type type)
+         {
+Index: TestHqlIntellisense/BasicTests.cs
+===================================================================
+--- TestHqlIntellisense/BasicTests.cs	(revision 34)
++++ TestHqlIntellisense/BasicTests.cs	(working copy)
+@@ -57,7 +57,7 @@
+         {
+             Configuration cfg = CreateCfg();
+             HQLCodeAssist assist = new HQLCodeAssist( new NHConfigDataProvider(cfg));
+-            assist.CodeComplete("select x. from myentity x", 9, this);
++            assist.CodeComplete("select x. from MyEntity x", 9, this);
+             Assert.That(proposals.Count == 5);
+         }
+         [Test]
+@@ -65,7 +65,7 @@
+         {
+             Configuration cfg = CreateCfg();
+             HQLCodeAssist assist = new HQLCodeAssist( new NHConfigDataProvider(cfg));
+-            assist.CodeComplete("select x.Referenced. from myentity x", 20, this);
++            assist.CodeComplete("select x.Referenced. from MyEntity x", 20, this);
+             Assert.That(proposals.Count == 3);
+         }
+ 
+@@ -74,7 +74,7 @@
+         {
+             Configuration cfg = CreateCfg();
+             HQLCodeAssist assist = new HQLCodeAssist( new NHConfigDataProvider(cfg));
+-            assist.CodeComplete("from myentity x where x.", 24, this);
++            assist.CodeComplete("from MyEntity x where x.", 24, this);
+             Assert.That(proposals.Count == 5);
+         }
+         [Test]
+@@ -82,7 +82,7 @@
+         {
+             Configuration cfg = CreateCfg();
+             HQLCodeAssist assist = new HQLCodeAssist( new NHConfigDataProvider(cfg));
+-            assist.CodeComplete("from myentity x where x.Referenced.", 35, this);
++            assist.CodeComplete("from MyEntity x where x.Referenced.", 35, this);
+             Assert.That(proposals.Count == 3);
+         }
+         [Test]
+@@ -98,7 +98,7 @@
+         {
+             Configuration cfg = CreateCfg();
+             HQLCodeAssist assist = new HQLCodeAssist( new NHConfigDataProvider(cfg));
+-            assist.CodeComplete("from myentity x where x in ( select y. from referenced y)", 38, this);
++			assist.CodeComplete("from MyEntity x where x in ( select y. from Referenced y)", 38, this);
+             Assert.That(proposals.Count == 3);
+         }
+         public static Configuration CreateCfg()
+Index: TestHqlIntellisense/Referenced.hbm.xml
+===================================================================
+--- TestHqlIntellisense/Referenced.hbm.xml	(revision 0)
++++ TestHqlIntellisense/Referenced.hbm.xml	(revision 0)
+@@ -0,0 +1,12 @@
++﻿<?xml version="1.0" encoding="utf-8" ?>
++<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="TestHqlIntellisense" namespace="TestHqlIntellisense">
++  <class name="Referenced" lazy="false">
++    <id type="Int32">
++      <generator class="native" />
++    </id>
++    <property name="R1" type="String"/>
++    <property name="R2" type="String"/>
++    <property name="R3" type="String"/>
++    
++  </class>
++</hibernate-mapping>
+\ No newline at end of file
+Index: TestHqlIntellisense/TestHqlIntellisense.csproj
+===================================================================
+--- TestHqlIntellisense/TestHqlIntellisense.csproj	(revision 34)
++++ TestHqlIntellisense/TestHqlIntellisense.csproj	(working copy)
+@@ -91,7 +91,7 @@
+     <EmbeddedResource Include="Entity.hbm.xml" />
+   </ItemGroup>
+   <ItemGroup>
+-    <EmbeddedResource Include="Reefrenced.hbm.xml" />
++    <EmbeddedResource Include="Referenced.hbm.xml" />
+   </ItemGroup>
+   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
